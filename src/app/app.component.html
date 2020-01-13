@@ -1,0 +1,24 @@
+<div class="container" style="text-align:center">
+  <div *ngIf="showForm">
+    <form>
+      <div class="form-group">
+        <h2 for="username">GitHub UserName</h2>
+        <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username" required>
+      </div>
+      <button type="submit" class="btn btn-success" (click)="searchUser()">Search User</button>
+    </form>
+  </div>
+  <div *ngIf="showProjects">
+    Repositories of {{userDetails.name}}
+    <ul>
+      <li *ngFor="let repo of userRepoDetails" (click)="getReadme(repo.url)">
+        {{repo.name}}
+      </li>
+    </ul>
+  </div>
+  <div id="readmeContent">
+    <markdown id="readmeContent" name="readmeContent" [src]="'https://raw.githubusercontent.com/google/0x0g-2018-badge/master/README.md'"></markdown>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
